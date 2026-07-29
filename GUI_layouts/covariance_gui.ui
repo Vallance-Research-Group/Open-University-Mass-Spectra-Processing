@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>878</width>
+    <height>636</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Partial covariance plotter - OU version</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="1" column="2">
+    <widget class="QToolButton" name="openFile">
+     <property name="text">
+      <string>...</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>File name:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>860</width>
+       <height>590</height>
+      </size>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Set-up</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="PlotWidget" name="covMapWidget" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>5</horstretch>
+           <verstretch>5</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>300</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QLabel" name="guiStatus">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>300</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Status: Idle</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="plotCovariance">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="font">
+            <font>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Calculate covariance and add</string>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="saveCovMapData">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Save covariance map (data)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="saveCovMapImage">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Save covariance map (image)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="resetCovMap">
+           <property name="text">
+            <string>Reset (clears all data)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSplitter" name="splitter">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <widget class="QPushButton" name="plotRegCovarButton">
+            <property name="text">
+             <string>Regular covariance</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="plotPCovarButton">
+            <property name="text">
+             <string>Partial covariance</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>260</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="title">
+            <string>Plot options</string>
+           </property>
+           <widget class="QWidget" name="layoutWidget">
+            <property name="geometry">
+             <rect>
+              <x>14</x>
+              <y>20</y>
+              <width>271</width>
+              <height>231</height>
+             </rect>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_4">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_8">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Moving average cycle spread</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="rebinSpin">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="minimum">
+                <double>10.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>1000.000000000000000</double>
+               </property>
+               <property name="value">
+                <double>100.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QCheckBox" name="cBarCentreZeroCheck">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Set colour bar centre to 0</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_9">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Rebinning factor</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QDoubleSpinBox" name="gaussBlurSigma">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="minimum">
+                <double>0.010000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.250000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QCheckBox" name="zeroNegativeCheck">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Zero negatives</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_7">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Colour map:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QCheckBox" name="gaussBlurCheck">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Apply Gaussian blur</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="label_21">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Gaussian blur sigma</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="colourMapCombo">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <item>
+                <property name="text">
+                 <string>inferno</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>viridis</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>magma</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-L1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-L3</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-L7</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-L8</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-L12</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-L16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-L17</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-L18</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-L19</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-D1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-D1A</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-D2</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CET-D3</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="movAvgSpread">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="minimum">
+                <double>1.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>10000.000000000000000</double>
+               </property>
+               <property name="value">
+                <double>100.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QCheckBox" name="reverseCMap">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Reverse colour map</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QCheckBox" name="logScaleCheck">
+               <property name="font">
+                <font>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Log</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="title">
+            <string>Mouse position (arrival time | m/z | value)</string>
+           </property>
+           <widget class="QSplitter" name="splitter_2">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>20</y>
+              <width>281</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <widget class="QLineEdit" name="timeMousePosition">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="mzMousePosition">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="valueMousePosition">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>Contrast:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QDoubleSpinBox" name="contrastSpin">
+             <property name="minimumSize">
+              <size>
+               <width>60</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="decimals">
+              <number>8</number>
+             </property>
+             <property name="minimum">
+              <double>0.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>1.000000000000000</double>
+             </property>
+             <property name="singleStep">
+              <double>0.100000000000000</double>
+             </property>
+             <property name="stepType">
+              <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+             </property>
+             <property name="value">
+              <double>0.000100000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>Mass calibration</string>
+      </attribute>
+      <widget class="PlotWidget" name="massCaliToF" native="true">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>771</width>
+         <height>241</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="massCaliTable">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>310</y>
+         <width>201</width>
+         <height>231</height>
+        </rect>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="showGrid">
+        <bool>true</bool>
+       </property>
+       <property name="sortingEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="rowCount">
+        <number>2</number>
+       </property>
+       <property name="columnCount">
+        <number>2</number>
+       </property>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <row>
+        <property name="text">
+         <string>Row 1</string>
+        </property>
+       </row>
+       <row>
+        <property name="text">
+         <string>Row 2</string>
+        </property>
+       </row>
+       <column>
+        <property name="text">
+         <string>Time</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Mass / charge</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="PlotWidget" name="calibrationFitWidget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>500</x>
+         <y>290</y>
+         <width>281</width>
+         <height>251</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>380</y>
+         <width>204</width>
+         <height>88</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="massCaliAddButton">
+            <property name="text">
+             <string>Add row</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="massCaliClearButton">
+            <property name="text">
+             <string>Clear all</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="massCaliRemoveButton">
+            <property name="text">
+             <string>Remove row</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="plotMassCali">
+            <property name="text">
+             <string>Plot calibration</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="layoutWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>330</x>
+         <y>290</y>
+         <width>52</width>
+         <height>48</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="2" column="0">
+         <widget class="QRadioButton" name="radioMassCharge">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>m / z</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QRadioButton" name="radioToF">
+          <property name="text">
+           <string>ToF</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Loaded data notes</string>
+      </attribute>
+      <widget class="QTableWidget" name="loadDataParamTable">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>301</width>
+         <height>311</height>
+        </rect>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>150</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>FIle name</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Number of cycles</string>
+        </property>
+       </column>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="fileName"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QWidget</extends>
+   <header>pyqtgraph</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
