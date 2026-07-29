@@ -19,7 +19,7 @@ class MainWindow(QtWidgets.QWidget):
         super(MainWindow, self).__init__(*args, **kwargs)
 
         #Load the UI Page
-        uic.loadUi(os.path.join(os.path.dirname(__file__), 'GUI_layouts\\covariance_gui.ui'), self)
+        uic.loadUi(os.path.join(os.path.dirname(__file__), 'GUI_layouts', 'covariance_gui.ui'), self)
 
         # Set defaults
         self.cur_path = os.path.expanduser(r'~\Documents')
