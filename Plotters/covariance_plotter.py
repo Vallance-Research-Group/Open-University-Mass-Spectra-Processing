@@ -1,4 +1,3 @@
-import pimmsread
 from timeit import default_timer
 import pyqtgraph as pg
 from PyQt6.QtCore import *
