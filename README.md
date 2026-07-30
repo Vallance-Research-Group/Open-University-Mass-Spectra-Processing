@@ -48,6 +48,7 @@ Identifier of the start of data: '[DATA]'
 The data is a list of arrival times, with zeros denoting the start of an acquisition cycle
 
 For example:
+```
 0
 12
 24
@@ -57,6 +58,7 @@ For example:
 0
 21
 42
+```
 
 This dataset would consist of three acquisition cycles. The first would have three ions arriving, as times 12, 24 and 52, the second would have a single ion arriving at time 24, and the third two ions arriving at times 21 and 42.
 
@@ -67,4 +69,4 @@ The header contains the same information as the header in the lst file. Ion coun
 
 ## Footnotes
 1. Strictly, the code accounts for the fact that the measurements are necessarily samples, so subtracts one from the total number of acquisition cycles for each covariance map plotted. In practice, this difference is negilible for the datasets being used.
-1. The variable parameter used for partial covariance is calculated using an exponential moving average of the total ion count in each acquisition cycle. We define a scaling factor, $k = \frac{2}{1+t}$, where $t$ is the *Moving average cycle spread*. If we define the ion count in the $j^th$ acquisition cycle as $S_j$, the $j^th$ variable parameter, $I_j$, is then defined as $I_j = S_j k + S_{j-1} (1-k)$. We choose $I_0 = S_0$ as the initial value.
+1. The variable parameter used for partial covariance is calculated using an exponential moving average of the total ion count in each acquisition cycle. We define a scaling factor, $k = \frac{2}{1+t}$, where $t$ is the value defined in *Moving average cycle spread*. If we define the ion count in the $j^{th}$ acquisition cycle as $S_j$, the $j^{th}$ variable parameter, $I_j$, is then defined as $I_j = S_j k + S_{j-1} (1-k)$. We choose $I_0 = S_0$ as the initial value.
